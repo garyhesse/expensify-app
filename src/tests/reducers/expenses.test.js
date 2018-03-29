@@ -16,7 +16,7 @@ test('should remove expense by id', () => {
     expect(state).toEqual([expenses[0], expenses[2]]);
 });
 
-test('should remove expense by id', () => {
+test('should not remove expense if id does not exist', () => {
     const action = {
         type: 'REMOVE_EXPENSE',
         id: -1
@@ -65,4 +65,13 @@ test('should not edit expense if expense not found', () => {
     };
     const state = expensesReducer(expenses, action);
     expect(state).toEqual(expenses);
+});
+
+test('should set expenses', () => {
+    const action = {
+        type: 'SET_EXPENSES',
+        expenses: [expenses[1]]
+    };
+    const state = expensesReducer(expenses, action);
+    expect(state).toEqual([expenses[1]]);
 });
